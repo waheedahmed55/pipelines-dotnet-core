@@ -26,3 +26,15 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish -c Release -o website
+    - name: Upload GitHub Pages artifact
+      uses: actions/upload-pages-artifact@v4.0.0
+      with:
+        # Artifact name
+        name: webapp
+        # Path of the directory containing the static assets.
+        path: website/**
+        # Duration after which artifact will expire in days.
+        retention-days: # optional, default is 1
+          
